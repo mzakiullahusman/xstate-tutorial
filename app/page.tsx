@@ -1,9 +1,9 @@
 "use client";
-import { myMachine } from "@/machines/myFirstMachine";
+import { todosMachine } from "@/machines/todoAppMachine";
 import { useMachine } from "@xstate/react";
 
 export default function Home() {
-  const [state, send] = useMachine(myMachine);
+  const [state, send] = useMachine(todosMachine);
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -12,18 +12,18 @@ export default function Home() {
         <div>{JSON.stringify(state.value)}</div>
         <button
           onClick={() => {
-            send({ type: "MOUSEOVER" });
+            send({ type: "Loaded" });
           }}
         >
-          Mouse over
+          Todos loaded
         </button>
         <br />
         <button
           onClick={() => {
-            send({ type: "MOUSEOUT" });
+            send({ type: "Loading Failed" });
           }}
         >
-          Mouse out
+          Loading todos failed
         </button>
       </div>
     </main>
